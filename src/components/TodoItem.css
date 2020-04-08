@@ -1,0 +1,107 @@
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.itemList {
+    display: flex;    
+    width: 100%;
+    max-width: 400px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    
+    
+    box-sizing: border-box;
+    
+}
+
+.flex-input {
+    margin-left: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    border: 1.5px solid rgba(224, 217, 213, 0.849);
+    border-radius: 5px;
+}
+
+h6 {
+    margin-left: 15px;
+    font-size: 14px;
+    margin: 15px 0 15px 15px;
+    
+}
+
+.todoIcons {
+    
+    margin-right: 15px;
+    display: flex;
+}
+
+.icons {
+    margin: 10px;
+    padding: 5px;
+    font-size: 20px;
+
+}
+
+.pen-btn {
+    color: rgb(2, 126, 2);
+    cursor: pointer;
+    transition: color .2s ease-in;
+
+}
+
+.del-btn {
+    color: rgb(116, 0, 0);
+    cursor: pointer;
+    transition: color .2s ease-in;
+}
+
+.pen-btn:hover, .editBtnIsActive {
+    color: rgb(2, 211, 2);
+}
+
+.del-btn:hover {
+    color: rgb(216, 1, 1);
+}
+
+.done {
+    text-decoration: line-through;
+    color: rgba(126, 126, 126, 0.336);
+}
+
+.important {
+    color: rgb(248, 7, 7)
+}
+
+.imp-btn {
+    color: rgb(2, 21, 126);
+    cursor: pointer;
+    transition: color .2s ease-in;
+}
+
+.imp-btn:hover, .impBtnIsActive {
+    color: rgb(6, 101, 243);
+}
+
+.doneBtn {
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    opacity: .1;
+    transition: all .2s ease-in;
+}
+
+.doneBtn:hover {
+    color: rgb(2, 211, 2);
+    opacity: 1;
+
+}
+
+.doneBtnIsActive {
+    color: rgb(2, 211, 2);
+    opacity: 1;
+}
+

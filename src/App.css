@@ -1,0 +1,25 @@
+.app {
+  
+  padding-bottom: 30px;
+  width: 70%;
+  max-width: 550px;
+  border: gray solid 1px;
+  border-radius: 10px;
+  
+  margin: 100px auto;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  justify-content: center;
+ 
+}
+
+.input h1 {
+  display: flex;
+  justify-content: center;
+}
+
