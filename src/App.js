@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
 import BlackBack from './components/BlackBack'
+import Home from './Home'
 import './App.css'
 
 
@@ -27,7 +29,7 @@ class App extends Component {
   handleSubmit = (event) => {           // По нажатию кнопки сабмит
     event.preventDefault();             // ОТменяем обновление страницы
 
-    
+
     const newItem = {                   // Создаем новую константу NewItem
       itemId: this.state.id,                // Записываем в неё айди
       title: this.state.item,             // и значение Title которое вравно item которое раньше передали через инпут
@@ -65,7 +67,7 @@ class App extends Component {
   }
 
   toggleEditItem = (itemId) => {
-    
+
     const idx = this.state.items.findIndex(item => item.itemId === itemId)
     console.log(idx)
     const newItem = {
@@ -164,7 +166,7 @@ class App extends Component {
 
     }))
   }
-  
+
   cancelDeleting = () => {
     this.setState(prevState => ({
       userWantsToDeleteItem: !prevState.userWantsToDeleteItem
@@ -174,51 +176,73 @@ class App extends Component {
   render() {
 
     return (
-      <div className='app'>
-
-        {this.state.userWantsToDeleteItem ?
-          <BlackBack
+      <Router>
+        <Switch>
+          <Route path='/Todo-App' exact render={() => <Home
+            userWantsToDeleteItem={this.state.userWantsToDeleteItem}
             itemIdUserWantsToDelete={this.state.itemIdUserWantsToDelete}
             handleDelete={this.handleDelete}
-            cancelDeleting={this.cancelDeleting} />
-          :
-          null}
-
-        <div className='input'>
-          <h1>My Todo List</h1>
-          <TodoInput
+            cancelDeleting={this.cancelDeleting}
 
             item={this.state.item}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             editItem={this.state.editItem}
+            items={this.state.items}
+            test={this.state.test}
+            clearList={this.clearList}
+            handleDelete={this.handleDelete}
+            handleItemEdit={this.handleItemEdit}
+            handleItemEditSubmit={this.handleItemEditSubmit}
+            toggleEditItem={this.toggleEditItem}
+            onToggleItemIsDone={this.onToggleItemIsDone}
+            onToggleItemIsImportant={this.onToggleItemIsImportant}
+
+            deleteItemPopUp={this.deleteItemPopUp}
+
           />
-        </div>
+          } />
 
-        
+          {/* <div className='app'>
 
-        <TodoList
-          items={this.state.items}
-          test={this.state.test}
-          clearList={this.clearList}
-          handleDelete={this.handleDelete}
-          handleItemEdit={this.handleItemEdit}
-          handleItemEditSubmit={this.handleItemEditSubmit}
-          toggleEditItem={this.toggleEditItem}
-          onToggleItemIsDone={this.onToggleItemIsDone}
-          onToggleItemIsImportant={this.onToggleItemIsImportant}
+             {this.state.userWantsToDeleteItem ?
+              <BlackBack
+                itemIdUserWantsToDelete={this.state.itemIdUserWantsToDelete}
+                handleDelete={this.handleDelete}
+                cancelDeleting={this.cancelDeleting} />
+              :
+              null}
 
-          deleteItemPopUp={this.deleteItemPopUp}
+            <div className='input'>
+              <h1>My Todo List</h1>
+              <TodoInput
 
-        />
+                item={this.state.item}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+                editItem={this.state.editItem}
+              />
+            </div>
 
+            <TodoList
+              items={this.state.items}
+              test={this.state.test}
+              clearList={this.clearList}
+              handleDelete={this.handleDelete}
+              handleItemEdit={this.handleItemEdit}
+              handleItemEditSubmit={this.handleItemEditSubmit}
+              toggleEditItem={this.toggleEditItem}
+              onToggleItemIsDone={this.onToggleItemIsDone}
+              onToggleItemIsImportant={this.onToggleItemIsImportant}
 
+              deleteItemPopUp={this.deleteItemPopUp}
 
-
-
-      </div>
+            />
+          </div> */}
+        </Switch>
+      </Router>
     )
   }
 }
 
-export default App
+export default App;
