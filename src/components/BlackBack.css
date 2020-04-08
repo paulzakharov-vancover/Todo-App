@@ -59,3 +59,12 @@
     transition: all 0.3s ease 0s; 
 }
 
+
+@media (max-width: 400px) {
+    .deleteQuestion {
+        margin-top: 250px;
+        margin-left: 40px;
+        margin-right: 40px;
+        
+    }
+}

@@ -44,6 +44,13 @@ ul h1 {
 
 }
 
+@media (max-width: 400px) {
+    .clearBtn {
+        width: 70%;
+        margin-left: 0;
+    }
+}
+
 /* .btn {
     
     background-color: rgba(155, 0, 0, .6);

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
 import BlackBack from './components/BlackBack'
-import Home from './Home'
+// import Home from './Home'
 import './App.css'
 
 
@@ -178,16 +178,29 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route path='/Todo-App' exact render={() => <Home
-            userWantsToDeleteItem={this.state.userWantsToDeleteItem}
-            itemIdUserWantsToDelete={this.state.itemIdUserWantsToDelete}
-            handleDelete={this.handleDelete}
-            cancelDeleting={this.cancelDeleting}
+           <Route path='/Todo-App' exact render={() => 
+           <div className='app'>
 
-            item={this.state.item}
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-            editItem={this.state.editItem}
+           {this.state.userWantsToDeleteItem ?
+            <BlackBack
+              itemIdUserWantsToDelete={this.state.itemIdUserWantsToDelete}
+              handleDelete={this.handleDelete}
+              cancelDeleting={this.cancelDeleting} />
+            :
+            null}
+
+          <div className='input'>
+            <h1>My Todo List</h1>
+            <TodoInput
+
+              item={this.state.item}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              editItem={this.state.editItem}
+            />
+          </div>
+
+          <TodoList
             items={this.state.items}
             test={this.state.test}
             clearList={this.clearList}
@@ -201,44 +214,8 @@ class App extends Component {
             deleteItemPopUp={this.deleteItemPopUp}
 
           />
-          } />
-
-          {/* <div className='app'>
-
-             {this.state.userWantsToDeleteItem ?
-              <BlackBack
-                itemIdUserWantsToDelete={this.state.itemIdUserWantsToDelete}
-                handleDelete={this.handleDelete}
-                cancelDeleting={this.cancelDeleting} />
-              :
-              null}
-
-            <div className='input'>
-              <h1>My Todo List</h1>
-              <TodoInput
-
-                item={this.state.item}
-                handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit}
-                editItem={this.state.editItem}
-              />
-            </div>
-
-            <TodoList
-              items={this.state.items}
-              test={this.state.test}
-              clearList={this.clearList}
-              handleDelete={this.handleDelete}
-              handleItemEdit={this.handleItemEdit}
-              handleItemEditSubmit={this.handleItemEditSubmit}
-              toggleEditItem={this.toggleEditItem}
-              onToggleItemIsDone={this.onToggleItemIsDone}
-              onToggleItemIsImportant={this.onToggleItemIsImportant}
-
-              deleteItemPopUp={this.deleteItemPopUp}
-
-            />
-          </div> */}
+        </div>} />
+           
         </Switch>
       </Router>
     )
