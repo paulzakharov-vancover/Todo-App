@@ -109,8 +109,8 @@ h6 {
         width: 200%;
     } */
     .itemList {
-        margin-left: -80px; 
-        width: 140%;
+        margin-left: -20px;
+        width: 100%;
         max-width: 600px;
         
     }
@@ -129,4 +129,12 @@ h6 {
         font-size: 20px;
     }
 
+}
+
+@media (max-width: 590px) {
+    .itemList {
+        margin-left: -90px;
+        width: 140%;
+        
+    }
 }

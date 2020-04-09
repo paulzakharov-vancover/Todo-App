@@ -54,3 +54,11 @@
     border-color: #20bf6b;
     transition: all 0.3s ease 0s; 
 }
+
+@media (max-width: 590px) {
+    .editQuestion {
+        margin-top: 40px;
+        padding: 10px;
+        
+    }
+  }
