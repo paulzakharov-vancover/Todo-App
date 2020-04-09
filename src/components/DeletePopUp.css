@@ -1,0 +1,70 @@
+.backDrop {
+    background: rgba(0, 0, 0, .7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+}
+
+.deleteQuestion {
+    width: 300px;
+    height: 240px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 300px auto;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    
+}
+
+.deleteQuestion h3 {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.questionBtns {
+    position: relative;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.yesBtn, .noBtn {
+    color: #494949 !important;
+    text-transform: uppercase;
+    padding: 10px;
+    border: 4px solid #494949;
+    border-radius: 6px;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #fff;
+    transition: all 0.3s ease 0s;
+
+}
+
+.yesBtn:hover {
+    color: #20bf6b !important;
+    border-radius: 50px;
+    border-color: #20bf6b;
+    transition: all 0.3s ease 0s; 
+}
+
+.noBtn:hover {
+    color: rgb(238, 2, 2) !important;
+    border-radius: 50px;
+    border-color: rgb(238, 2, 2);
+    transition: all 0.3s ease 0s; 
+}
+
+
+@media (max-width: 400px) {
+    .deleteQuestion {
+        margin-top: 250px;
+        margin-left: 40px;
+        margin-right: 40px;
+        
+    }
+}

@@ -1,7 +1,7 @@
 import React from 'react'
-import './BlackBack.css'
+import './DeletePopUp.css'
 
-const BlackBack = (props) => {
+const DeletePopUp = (props) => {
     return (
         <div className='backDrop'>
             <div className='deleteQuestion'>
@@ -22,4 +22,4 @@ const BlackBack = (props) => {
     )
 }
 
-export default BlackBack
+export default DeletePopUp

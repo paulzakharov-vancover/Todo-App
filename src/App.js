@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
-import BlackBack from './components/BlackBack'
+import BlackBack from './components/BlackBack';
+import DeletePopUp from './components/DeletePopUp'
 // import Home from './Home'
 import './App.css'
 
@@ -66,6 +67,7 @@ class App extends Component {
     })
   }
 
+
   toggleEditItem = (itemId) => {
 
     const idx = this.state.items.findIndex(item => item.itemId === itemId)
@@ -74,7 +76,6 @@ class App extends Component {
       ...this.state.items[idx],
       itemIsEditing: !this.state.items[idx].itemIsEditing
     }
-    console.log(newItem)
     const newArray = [
       ...this.state.items.slice(0, idx),
       newItem,
@@ -182,7 +183,7 @@ class App extends Component {
            <div className='app'>
 
            {this.state.userWantsToDeleteItem ?
-            <BlackBack
+            <DeletePopUp
               itemIdUserWantsToDelete={this.state.itemIdUserWantsToDelete}
               handleDelete={this.handleDelete}
               cancelDeleting={this.cancelDeleting} />

@@ -44,7 +44,7 @@ ul h1 {
 
 }
 
-@media (max-width: 400px) {
+@media (max-width: 768px) {
     .clearBtn {
         width: 70%;
         margin-left: 0;
