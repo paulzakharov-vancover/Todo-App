@@ -60,9 +60,9 @@
 }
 
 
-@media (max-width: 400px) {
+@media (max-width: 590px) {
     .deleteQuestion {
-        margin-top: 250px;
+        margin-top: 200px;
         margin-left: 40px;
         margin-right: 40px;
         
