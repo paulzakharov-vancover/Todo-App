@@ -7,15 +7,15 @@ const TodoList = (props) => {
         <ul>
             <h1>Todo List</h1>
 
-            {props.items.map(item => {         // Разбиваем ареей и превращаем каждый её объект в отдельный TodoItem, что прописан в соседнем компоненте
+            {props.items.map(item => {        
                 return (
                     <TodoItem
-                        key={item.itemId}             // Передаём новому компоненту два пропса - id и title, которые содержаться в каждом объекте array которую мы разбили
+                        key={item.itemId}           
                         title={item.title}
                         itemIsEditing={item.itemIsEditing}
                         itemIsDone={item.itemIsDone}
                         itemIsImportant={item.itemIsImportant}
-                        handleDelete={() => props.handleDelete(item.itemId)} //Для того что бы заработало удаление надо что бы функция получила ID того элемента который надо удалить.
+                        handleDelete={() => props.handleDelete(item.itemId)} 
                         handleItemEditSubmit={(e) => props.handleItemEditSubmit(item.itemId, e)}
                         toggleEditItem={() => props.toggleEditItem(item.itemId)}
                         handleItemEdit={(event) => props.handleItemEdit(event)}
@@ -29,19 +29,10 @@ const TodoList = (props) => {
                 )
             })}
 
+            {props.items.length > 0 ? <div className='clearBtn'
+            onClick={props.clearList} ><a>Clear the List</a></div> : null }
 
 
-            <div className='clearBtn'
-            onClick={props.clearList} ><a>Clear the List</a></div>
-
-
-
-            {/* <button
-                className='btn'
-                type='button'
-                onClick={props.clearList} >
-                Clear the List
-            </button> */}
 
         </ul>
     )
