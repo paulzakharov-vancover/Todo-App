@@ -30,7 +30,7 @@ const TodoItem = (props) => {
                 <EditItemInput
 
                     handleItemEdit={props.handleItemEdit}
-                    test={props.test}
+                    temporaryItemTitleWhileEditing={props.temporaryItemTitleWhileEditing}
                     handleItemEditSubmit={props.handleItemEditSubmit}
                 />
 

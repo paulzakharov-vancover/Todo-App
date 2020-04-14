@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
-import BlackBack from './components/BlackBack';
 import DeletePopUp from './components/DeletePopUp'
-// import Home from './Home'
 import './App.css'
 
 
@@ -14,33 +12,33 @@ class App extends Component {
     id: 0,
     item: '',
     editItem: false,
-    test: '',
+    temporaryItemTitleWhileEditing: '',
     userWantsToDeleteItem: false,
     itemIdUserWantsToDelete: {}
 
 
   }
 
-  handleChange = (event) => {          // То что пишем в инпуте - записываем в стейт item
+  handleChange = (event) => {
     this.setState({
       item: event.target.value
     })
   }
 
-  handleSubmit = (event) => {           // По нажатию кнопки сабмит
-    event.preventDefault();             // ОТменяем обновление страницы
+  handleSubmit = (event) => {
+    event.preventDefault();
 
 
-    const newItem = {                   // Создаем новую константу NewItem
-      itemId: this.state.id,                // Записываем в неё айди
-      title: this.state.item,             // и значение Title которое вравно item которое раньше передали через инпут
+    const newItem = {
+      itemId: this.state.id,
+      title: this.state.item,
       itemIsImportant: false,
       itemIsDone: false,
       itemIsEditing: false,
-      temporaryItemTitle: this.state.item
+      
     }
 
-    const updatedItems = [...this.state.items, newItem]        //Нам нельзя мутировать текущий стейт, надо заменить его на новый с обновленными данными. ДЛя этого создаем новый массим со старыми данными
+    const updatedItems = [...this.state.items, newItem]
     this.setState(prevState => ({
       items: updatedItems,
       item: '',
@@ -57,14 +55,13 @@ class App extends Component {
   }
 
   handleDelete = (itemId) => {
-    const filteredItems = this.state.items.filter(item => item.itemId !== itemId) //Создаем новый маассив равный массиву из стейта но после фильтрации. В фильтре мы указываем что надо
-    // Оставить только те item которые не содержат id равный тому что мы получили на входе в функцию
-    this.setState({
+    const filteredItems = this.state.items.filter(item => item.itemId !== itemId)
+    this.setState(prevState => ({ 
       items: filteredItems,
-      userWantsToDeleteItem: !this.state.userWantsToDeleteItem,
+      userWantsToDeleteItem: !prevState.userWantsToDeleteItem,
       itemIdUserWantsToDelete: {}
 
-    })
+    }))
   }
 
 
@@ -82,16 +79,16 @@ class App extends Component {
       ...this.state.items.slice(idx + 1)
     ]
     return (
-      this.setState({
+      this.setState(prevState => ({
         items: newArray,
-        test: this.state.items[idx].title
-      })
+        temporaryItemTitleWhileEditing: prevState.items[idx].title
+      }))
     )
   }
 
   handleItemEdit = (event) => {
     this.setState({
-      test: event.target.value
+      temporaryItemTitleWhileEditing: event.target.value
     })
   }
 
@@ -102,7 +99,7 @@ class App extends Component {
 
     const newItem = {
       ...this.state.items[idx],
-      title: this.state.test,
+      title: this.state.temporaryItemTitleWhileEditing,
       itemIsEditing: !this.state.items[idx].itemIsEditing
 
     }
@@ -114,7 +111,7 @@ class App extends Component {
     return (
       this.setState({
         items: newArray,
-        test: ''
+        temporaryItemTitleWhileEditing: ''
       })
     )
   }
@@ -179,44 +176,44 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-           <Route path='/Todo-App' exact render={() => 
-           <div className='app'>
+          <Route path='/Todo-App' exact render={() =>
+            <div className='app'>
 
-           {this.state.userWantsToDeleteItem ?
-            <DeletePopUp
-              itemIdUserWantsToDelete={this.state.itemIdUserWantsToDelete}
-              handleDelete={this.handleDelete}
-              cancelDeleting={this.cancelDeleting} />
-            :
-            null}
+              {this.state.userWantsToDeleteItem ?
+                <DeletePopUp
+                  itemIdUserWantsToDelete={this.state.itemIdUserWantsToDelete}
+                  handleDelete={this.handleDelete}
+                  cancelDeleting={this.cancelDeleting} />
+                :
+                null}
 
-          <div className='input'>
-            <h1>My Todo List</h1>
-            <TodoInput
+              <div className='input'>
+                <h1>My Todo List</h1>
+                <TodoInput
 
-              item={this.state.item}
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
-              editItem={this.state.editItem}
-            />
-          </div>
+                  item={this.state.item}
+                  handleChange={this.handleChange}
+                  handleSubmit={this.handleSubmit}
+                  editItem={this.state.editItem}
+                />
+              </div>
 
-          <TodoList
-            items={this.state.items}
-            test={this.state.test}
-            clearList={this.clearList}
-            handleDelete={this.handleDelete}
-            handleItemEdit={this.handleItemEdit}
-            handleItemEditSubmit={this.handleItemEditSubmit}
-            toggleEditItem={this.toggleEditItem}
-            onToggleItemIsDone={this.onToggleItemIsDone}
-            onToggleItemIsImportant={this.onToggleItemIsImportant}
+              <TodoList
+                items={this.state.items}
+                temporaryItemTitleWhileEditing={this.state.temporaryItemTitleWhileEditing}
+                clearList={this.clearList}
+                handleDelete={this.handleDelete}
+                handleItemEdit={this.handleItemEdit}
+                handleItemEditSubmit={this.handleItemEditSubmit}
+                toggleEditItem={this.toggleEditItem}
+                onToggleItemIsDone={this.onToggleItemIsDone}
+                onToggleItemIsImportant={this.onToggleItemIsImportant}
 
-            deleteItemPopUp={this.deleteItemPopUp}
+                deleteItemPopUp={this.deleteItemPopUp}
 
-          />
-        </div>} />
-           
+              />
+            </div>} />
+
         </Switch>
       </Router>
     )

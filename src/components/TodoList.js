@@ -21,7 +21,7 @@ const TodoList = (props) => {
                         handleItemEdit={(event) => props.handleItemEdit(event)}
                         onToggleItemIsDone={() => props.onToggleItemIsDone(item.itemId)}
                         onToggleItemIsImportant={() => props.onToggleItemIsImportant(item.itemId)}
-                        test={props.test}
+                        temporaryItemTitleWhileEditing={props.temporaryItemTitleWhileEditing}
 
                         deleteItemPopUp={() => props.deleteItemPopUp(item.itemId)}
                     />

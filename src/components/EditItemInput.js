@@ -12,7 +12,7 @@ const EditItemInput = (props) => {
                     <input className='editInput'
                         placeholder="edit your item here"
                         onChange={props.handleItemEdit}
-                        value={props.test}
+                        value={props.temporaryItemTitleWhileEditing}
                     />
                 </form>
                 <div className='editYesBtn'
